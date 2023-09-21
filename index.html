@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULTI-STEP-FORM-SUBMISSION</title>
+</head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<style>
+    .most-outer{
+       height: 610px;
+     width: 100%;
+padding: 2vh 2vw;
+        border:solid 5px rgb(224, 129, 224);
+        display: flex;
+        gap:1vw;
+    }
+    .left{
+        width:280px;
+        position: relative;
+        height: 100%;
+        
+
+    }
+
+    .img{
+        width:100%;
+        height: 100%;;
+    }
+    .wrapper{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 5%;
+        left: 5%;
+    }
+
+    .exter{
+        /* position: absolute; */
+        display: flex;
+        margin: 10px;
+        background-color: rgba(255, 255, 255, .15);  
+ backdrop-filter: blur(5px);
+        
+    }
+    .btn button{
+       font-size: 20px;
+       border-radius: 50%;
+       background: transparent;
+       border-color: rgb(143, 143, 254);
+    
+    }
+    .btn button:hover{
+        background-color: rgb(138, 100, 173);
+    }
+    .text{
+       font-size: 20px;
+    }
+    .info{
+        font-weight: 800;
+        color: #fff;
+
+    }
+    .stp{
+        opacity: .7;
+    }
+    .right{
+        display: flex;
+        flex-direction: column;
+        padding-left: 15vw;
+        padding-top: 4vw;
+        gap: 5vw;
+       
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 3vw;
+    }
+.personal{
+    font-weight: 400;
+    font-size: 6vw;
+}
+.please{
+    font-weight: 100;
+}
+.bttn{
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.warning{
+    color:red;
+    font-weight: 100;
+    font-size: 10ppx;
+}
+.warning2{
+    color:red;
+    font-weight: 100;
+    font-size: 10ppx;
+}
+.warning3{
+    color:red;
+    font-weight: 100;
+    font-size: 10ppx;
+}
+
+@media (max-width:600px){
+    .left{
+        width:100%;
+        position: relative;
+        height: 30%;
+        }
+        .most-outer{
+       height: 610px;
+     width: 100%;
+padding: 2vh 2vw;
+        border:solid 5px rgb(224, 129, 224);
+        display: flex;
+        flex-direction: column;
+        gap:1vw;
+}
+.wrapper{
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        gap:2.9vw;
+        top: 5%;
+        left: 5%;
+    }
+    .exter{
+        /* position: absolute; */
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, .15);  
+ backdrop-filter: blur(5px);
+         margin:0px;
+    }
+    .stp{
+        display: none;
+    }
+    .info{
+        font-size: 14px;
+    }
+}
+    
+</style>
+<body>
+    <div class="most-outer ">
+          <div class="left">
+          <img class="img" src="bgg.jpeg"/>
+          </div>
+          <div class="wrapper">
+          <div class="exter">
+             <div class="btn"><button class="btn1">1</button></div> 
+          <div class="text"> <div class="stp">STEP 1</div>
+            <div class="info">YOUR INFO</div></div>
+         </div>
+           <div class="exter">
+           <div class="btn"><button class="btn2">2</button></div> 
+          <div class="text"> <div class="stp">STEP 2</div>
+            <div class="info">SELECT PLAN</div></div> 
+          </div>
+          <div class="exter">
+           <div class="btn"><button class="btn3">3</button></div> 
+          <div class="text"> <div class="stp">STEP 3</div>
+            <div class="info">ADD-ONS</div></div> 
+          </div>
+          <div class="exter">
+           <div class="btn"><button class="btn4">4</button></div> 
+          <div class="text"> <div class="stp">STEP 4</div>
+            <div class="info">SUMMARY</div></div> 
+          </div>
+          </div>
+        
+<div class="right">
+   
+</div>
+          </div>
+    
+
+          <script>
+            let outer=document.querySelector(".most-outer");
+            let step1=true;
+            let step2=true;
+            let step3=true;  
+            let step4=true;
+           let button=document.querySelector(".buttonn");
+            let btn1=document.querySelector(".btn1");
+            let btn2=document.querySelector(".btn2");
+            let btn3=document.querySelector(".btn3");
+            let btn4=document.querySelector(".btn4");
+            let right=document.querySelector(".right");
+            let store1={
+                name:"",
+                email:"",
+                phnNo:""
+            }
+            let store2={
+               option1:"",
+               option2:"",
+            }
+            
+            let store3="";
+
+const final=()=>{
+   
+  outer.innerHTML="<h1>your form has submitted successfully</h1>"
+}
+            const sttep4=()=>{ btn1.style.backgroundColor="";
+    btn2.style.backgroundColor="";
+    btn3.style.backgroundColor="";
+    btn4.style.backgroundColor="green";
+                right.innerHTML=`
+                <div>
+<div>
+    <h3>Personal info</h3>
+    <div>
+        <p>name:${store1.name}</p>
+        <p>email:${store1.email}</p>
+        <p>Phone Num.:${store1.phnNo}</p>
+        </div>
+    <h3>Plans</h3>
+        <div>
+            <p>Amount:${store2.option1}</p>
+            <p>Path:${store2.option2}</p>
+            </div>
+
+       <h3>Adds</h3>
+             <div>
+                <p>Adds:${store3}</p>
+                <div>
+
+    </div>
+
+    <button class="btn btn-dark" onClick="final()">Proceed</button>
+                    </div>
+                `
+            }
+
+   const check3=()=>{
+    let warning3=document.querySelector(".warning3");
+    let option4=document.querySelector(".option4");
+    if(option4.value===""){
+       warning3.innerHTML="Every section should be filled first"
+    }
+    else{
+        store3=option4.value;
+        sttep4();
+    }
+   }
+
+   const sttep3=()=>{
+    btn1.style.backgroundColor="";
+    btn2.style.backgroundColor="";
+    btn3.style.backgroundColor="green";
+    btn4.style.backgroundColor="";
+    right.innerHTML=`<h4>Want ADDS</h4>
+                    <select class="form-select option4" aria-label="Default select example">
+                        <option selected>${store3}</option>
+  <option value="yes">yes</option>
+  <option value="no">no</option>
+  
+</select>
+
+<div>
+    <button class="btn btn-dark" onClick=sttep2()>Prev</button>
+    <button class="btn btn-dark" onClick=check3()>Submit</button>
+    <p class="warning3"></p>
+    </div>
+`
+   }
+
+          const check2=()=>{
+            let option1=document.querySelector(".option1");
+            let option2=document.querySelector(".option2");
+            let warning2=document.querySelector(".warning2")
+            if(option1.value===""||option2.value==="" ){
+                  warning2.innerHTML="Every section should be filled first";
+            }
+            else{
+                store2={
+                    option1:option1.value,
+                    option2:option2.value
+                };
+               sttep3();
+            }
+          }
+       
+const sttep2=()=>{
+    btn1.style.backgroundColor="";
+    btn2.style.backgroundColor="green";
+    btn3.style.backgroundColor="";
+    btn4.style.backgroundColor="";
+               right.innerHTML=`
+               <div>
+                <div>
+                    <select class="form-select option1" aria-label="Default select example">
+                        <option selected>${store2.option1}</option>
+  <option value="1000">1000</option>
+  <option value="2000">2000</option>
+  <option value="3000">3000</option>
+</select>
+<p>path</p>
+<select class="form-select option2" aria-label="Default select example">
+   
+  <option selected>${store2.option2}</option>
+  <option value="Paytm">Paytm</option>
+  <option value="GPay">GPay</option>
+  <option value="PayPal">PayPal</option>
+</select>
+                    </div>
+               <div>
+                <button class="btn btn-dark" onClick="sttep1()">Prev.</button>
+                <button class="btn btn-dark" onClick="check2()">Submit</button>
+                </div>
+
+                <p class="warning2"></p>
+               </div>`;
+}
+  
+            const check1=()=>{
+                 let input1 =document.querySelector(".input1");
+            let input2 =document.querySelector(".input2");
+            let input3 =document.querySelector(".input3");
+          let warning=document.querySelector(".warning");
+            if(input1.value==="" || input2.value==="" || input3.valueL===""){
+                warning.innerHTML="Every section should be filled first";
+            }
+            else{
+                const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                const phoneno = /^\d{10}$/;
+                let num=0;
+              if(input3.value.match(phoneno)){
+                 num=1
+              }  
+ 
+  if (input2.value.match(validRegex) && num===1 ) {
+
+store1={
+                    name:input1.value,
+                    email:input2.value,
+                    phnNo:input3.value
+                }
+               step1=false;
+               sttep2()
+    return true;
+
+  } else {
+   if(num===1){  warning.innerHTML="InValid email address!"}
+  else { warning.innerHTML="InValid Phone No."}
+  
+return false;
+
+  }
+                
+            }
+            }
+           
+    const sttep1=()=>{
+        btn1.style.backgroundColor="green";
+    btn2.style.backgroundColor="";
+    btn3.style.backgroundColor="";
+    btn4.style.backgroundColor="";
+        right.innerHTML=` <div>
+        <div class="personal">Personal info</div>
+        <div class="please">Please provide your name,email address, and phone number</div>
+    </div>
+
+    <form id="form">
+        <input class="input1" value='${store1.name}' type="text" placeholder="e.g. Stephen King"/>
+        <input class="input2" value='${store1.email}' type="text" placeholder="e.g. stephen12@gmail.com"/>
+        <input class="input3" value='${store1.phnNo}' type="text" placeholder="e.g. +91 1234567890"/>
+    </form>
+    <div class="bttn">
+        <p class="warning"></p>
+        <button class="btn btn-dark buttonn" onClick="check1()">Submit</button>
+    </div>`
+    }
+
+            if(step1===true){
+                sttep1();
+            }
+
+            const call2=()=>{
+                if(store1.name==="" || store1.email==="" || store1.phnNo===""){
+                    alert("PLZ fill First step")
+                }
+                else{
+                    btn1.style.backgroundColor="";
+    btn2.style.backgroundColor="green";
+    btn3.style.backgroundColor="";
+    btn4.style.backgroundColor="";
+                    sttep2();
+                }
+            }
+
+            const call1=()=>{
+              if(step1===false){
+                btn1.style.backgroundColor="green";
+    btn2.style.backgroundColor="";
+    btn3.style.backgroundColor="";
+    btn4.style.backgroundColor="";
+                sttep1()
+              }
+            }
+
+            const call3=()=>{
+                if(store2.option1==="" || store2.option2===""){
+                    alert("PLZ fill previous steps")
+                }
+                else{
+                    btn1.style.backgroundColor="";
+    btn2.style.backgroundColor="";
+    btn3.style.backgroundColor="green";
+    btn4.style.backgroundColor="";
+                    sttep3();
+                }
+            }
+            const call4=()=>{
+                if(store3===""){
+                    alert("PLZ fill previous steps")
+                }
+                else{
+                    btn1.style.backgroundColor="";
+    btn2.style.backgroundColor="";
+    btn3.style.backgroundColor="";
+    btn4.style.backgroundColor="green";
+                    sttep4();
+                }
+            }
+
+            btn1.addEventListener("click",call1);
+            btn2.addEventListener("click",call2);
+            btn3.addEventListener("click",call3);
+            btn4.addEventListener("click",call4);
+
+            </script>
+</body>
+</html>
